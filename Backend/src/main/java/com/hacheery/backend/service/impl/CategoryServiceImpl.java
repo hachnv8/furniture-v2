@@ -4,9 +4,10 @@ import com.hacheery.backend.entity.Category;
 import com.hacheery.backend.repository.CategoryRepository;
 import com.hacheery.backend.service.CategoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -18,8 +19,13 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository repository;
 
     @Override
-    public List<Category> getAllCategories() {
-        return repository.findAll();
+    public Page<Category> getAllCategories(Pageable paging) {
+        return repository.findAll(paging);
+    }
+
+    @Override
+    public Page<Category> findByNameContaining(String name, Pageable paging) {
+        return repository.findByName(name, paging);
     }
 
     @Override

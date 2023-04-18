@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "Cart")
 public class Cart {
 
     @Id
@@ -24,6 +25,7 @@ public class Cart {
     @ManyToOne
     private Customer customer;
 
+    @Column(name = "quantity")
     private int quantity;
 
     // Getters and setters
