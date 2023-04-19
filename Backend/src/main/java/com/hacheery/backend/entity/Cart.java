@@ -27,6 +27,4 @@ public class Cart {
 
     @Column(name = "quantity")
     private int quantity;
-
-    // Getters and setters
 }

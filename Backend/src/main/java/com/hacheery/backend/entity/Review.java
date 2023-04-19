@@ -22,11 +22,9 @@ public class Review {
 
     private int rating;
 
-    @ManyToOne
-    private Product product;
+    private Long productId;
 
-    @ManyToOne
-    private Customer customer;
+    private Long customerId;
 
     // Getters and setters
 }

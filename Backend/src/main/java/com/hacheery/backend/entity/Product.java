@@ -2,6 +2,7 @@ package com.hacheery.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
  */
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
@@ -28,8 +30,7 @@ public class Product {
 
     private boolean available;
 
-    @ManyToOne
-    private Category category;
+    private Long categoryId;
 
     // Getters and setters
 }

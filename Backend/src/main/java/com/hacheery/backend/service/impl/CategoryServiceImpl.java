@@ -1,6 +1,7 @@
 package com.hacheery.backend.service.impl;
 
 import com.hacheery.backend.entity.Category;
+import com.hacheery.backend.payload.response.PagedResponse;
 import com.hacheery.backend.repository.CategoryRepository;
 import com.hacheery.backend.service.CategoryService;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,13 +22,16 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository repository;
 
     @Override
-    public Page<Category> getAllCategories(Pageable paging) {
-        return repository.findAll(paging);
-    }
-
-    @Override
-    public Page<Category> findByNameContaining(String name, Pageable paging) {
-        return repository.findByName(name, paging);
+    public PagedResponse<Category> getCategories(String name, Pageable paging) {
+        Page<Category> categories;
+        if(name != null) {
+            categories = repository.findByNameContaining(name, paging);
+        } else {
+            categories = repository.findAll(paging);
+        }
+        List<Category> content = categories.getNumberOfElements() == 0 ? Collections.emptyList() :categories.getContent();
+        return new PagedResponse<>(content, categories.getNumber(), categories.getSize(), categories.getTotalElements(),
+                categories.getTotalPages());
     }
 
     @Override

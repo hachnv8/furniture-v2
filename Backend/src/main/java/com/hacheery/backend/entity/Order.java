@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Created by HachNV on 17/04/2023
@@ -23,9 +22,6 @@ public class Order {
 
     @ManyToOne
     private Customer customer;
-
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> items;
 
     private LocalDateTime orderDate;
 

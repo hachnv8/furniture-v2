@@ -1,12 +1,13 @@
 package com.hacheery.backend.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 /**
  * Created by HachNV on 17/04/2023
@@ -25,9 +26,6 @@ public class Category {
     private String name;
 
     private Long parentId;
-
-    @OneToMany(mappedBy = "category")
-    private List<Product> products;
 
     // Getters and setters
 }
