@@ -1,7 +1,10 @@
 package com.hacheery.backend.repository;
 
+import com.hacheery.backend.entity.Category;
 import com.hacheery.backend.entity.Product;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -9,4 +12,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ProductRepository extends JpaRepository<Product, Long> {
     boolean existsByName(@NotBlank String name);
+    Page<Product> findByNameContaining(String name, Pageable pageable);
 }
