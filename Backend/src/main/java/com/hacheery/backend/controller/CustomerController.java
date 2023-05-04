@@ -1,13 +1,12 @@
 package com.hacheery.backend.controller;
 
+import com.hacheery.backend.entity.Category;
 import com.hacheery.backend.entity.Customer;
+import com.hacheery.backend.payload.request.CustomerRequest;
 import com.hacheery.backend.payload.response.ApiResponse;
 import com.hacheery.backend.payload.response.PagedResponse;
 import com.hacheery.backend.service.impl.CustomerServiceImpl;
-import com.hacheery.backend.utils.AppConstants;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +21,9 @@ public class CustomerController {
     private final CustomerServiceImpl customerService;
 
     @GetMapping("/list")
-    public PagedResponse<Customer> getCustomers(
-            @RequestParam(required = false) String name,
-            @RequestParam(name = "page", required = false, defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
-            @RequestParam(name = "size", required = false, defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size
-    ) {
-        Pageable paging = PageRequest.of(page, size);
-        return customerService.getCustomers(name, paging);
+    public ResponseEntity<PagedResponse<Customer>> getCustomers(CustomerRequest request) {
+        PagedResponse<Customer> response = customerService.getCustomers(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/{customerId}")

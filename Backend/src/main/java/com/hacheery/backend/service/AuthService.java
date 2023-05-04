@@ -9,5 +9,5 @@ import com.hacheery.backend.payload.response.AuthResponse;
  */
 public interface AuthService {
     AuthResponse login(LoginRequest loginRequest);
-    Boolean register(SignupRequest signupRequest);
+    void register(SignupRequest signupRequest);
 }

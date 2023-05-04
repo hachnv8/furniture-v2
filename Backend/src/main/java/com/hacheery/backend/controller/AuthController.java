@@ -1,6 +1,5 @@
 package com.hacheery.backend.controller;
 
-import com.hacheery.backend.entity.Account;
 import com.hacheery.backend.payload.request.LoginRequest;
 import com.hacheery.backend.payload.request.SignupRequest;
 import com.hacheery.backend.payload.response.ApiResponse;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private AuthServiceImpl authService;
+    private final AuthServiceImpl authService;
 
     @PostMapping("/signin")
     private ResponseEntity<AuthResponse> login(LoginRequest loginRequest) {

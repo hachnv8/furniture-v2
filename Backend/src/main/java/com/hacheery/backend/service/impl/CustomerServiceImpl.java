@@ -1,14 +1,22 @@
 package com.hacheery.backend.service.impl;
 
+import com.hacheery.backend.entity.Category;
 import com.hacheery.backend.entity.Customer;
 import com.hacheery.backend.exception.FurnitureApiException;
 import com.hacheery.backend.exception.ResourceNotFoundException;
+import com.hacheery.backend.payload.request.CustomerRequest;
 import com.hacheery.backend.payload.response.PagedResponse;
 import com.hacheery.backend.repository.CustomerRepository;
 import com.hacheery.backend.service.CustomerService;
+import com.hacheery.backend.specification.CategorySpecification;
+import com.hacheery.backend.specification.CustomerSpecification;
+import com.hacheery.backend.utils.AppUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,15 +33,15 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
 
     @Override
-    public PagedResponse<Customer> getCustomers(String name, Pageable paging) {
-        Page<Customer> customers;
-        if (name == null) {
-            customers = customerRepository.findAll(paging);
-        } else {
-            customers = customerRepository.findByNameContaining(name, paging);
-        }
-        List<Customer> content = customers.getNumberOfElements() == 0 ? Collections.emptyList() : customers.getContent();
-        return new PagedResponse<>(content, customers.getNumber(), customers.getSize(), customers.getTotalElements(), customers.getTotalPages());
+    public PagedResponse<Customer> getCustomers(CustomerRequest request) {
+        AppUtils.validatePageNumberAndPageSize(request.getPage(), request.getSize());
+        Pageable pageable = PageRequest.of(request.getPage(), request.getSize(),
+                Sort.by(request.getSortDirection(), request.getSortBy()));
+        Specification<Customer> spec = CustomerSpecification.searchCustomer(request);
+        Page<Customer> categories = customerRepository.findAll(spec, pageable);
+        List<Customer> content = categories.getNumberOfElements() == 0 ? Collections.emptyList() :categories.getContent();
+        return new PagedResponse<>(content, categories.getNumber(), categories.getSize(), categories.getTotalElements(),
+                categories.getTotalPages());
     }
 
     @Override

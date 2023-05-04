@@ -1,15 +1,13 @@
 package com.hacheery.backend.controller;
 
 import com.hacheery.backend.entity.Category;
+import com.hacheery.backend.payload.request.CategoryRequest;
 import com.hacheery.backend.payload.response.PagedResponse;
 import com.hacheery.backend.service.impl.CategoryServiceImpl;
-import com.hacheery.backend.utils.AppConstants;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 /**
  * Created by HachNV on 17/04/2023
@@ -19,21 +17,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CategoryController {
     private final CategoryServiceImpl categoryService;
-//    Logger logger = LoggerFactory.getLogger(CategoryController.class);
 
     @GetMapping("/list")
-    public PagedResponse<Category> getAllCategories(
-            @RequestParam(required = false) String name,
-            @RequestParam(name = "page", required = false, defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
-            @RequestParam(name = "size", required = false, defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size
-    ) {
-        Pageable paging = PageRequest.of(page, size);
-        return categoryService.getCategories(name, paging);
+    public ResponseEntity<PagedResponse<Category>> getAllCategories(@ModelAttribute CategoryRequest request) {
+        PagedResponse<Category> response = categoryService.getCategories(request);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/{categoryId}")
-    public Optional<Category> getCategory(@PathVariable Long categoryId) {
-        return categoryService.getCategory(categoryId);
+    public ResponseEntity<Category> getCategory(@PathVariable Long categoryId) {
+        Category category = categoryService.getCategory(categoryId);
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
     @PostMapping("/create")

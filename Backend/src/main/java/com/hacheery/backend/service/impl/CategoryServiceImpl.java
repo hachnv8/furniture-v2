@@ -1,17 +1,23 @@
 package com.hacheery.backend.service.impl;
 
 import com.hacheery.backend.entity.Category;
+import com.hacheery.backend.exception.ResourceNotFoundException;
+import com.hacheery.backend.payload.request.CategoryRequest;
 import com.hacheery.backend.payload.response.PagedResponse;
 import com.hacheery.backend.repository.CategoryRepository;
 import com.hacheery.backend.service.CategoryService;
+import com.hacheery.backend.specification.CategorySpecification;
+import com.hacheery.backend.utils.AppUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by HachNV on 17/04/2023
@@ -22,21 +28,20 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository repository;
 
     @Override
-    public PagedResponse<Category> getCategories(String name, Pageable paging) {
-        Page<Category> categories;
-        if(name != null) {
-            categories = repository.findByNameContaining(name, paging);
-        } else {
-            categories = repository.findAll(paging);
-        }
+    public PagedResponse<Category> getCategories(CategoryRequest request) {
+        AppUtils.validatePageNumberAndPageSize(request.getPage(), request.getSize());
+        Pageable pageable = PageRequest.of(request.getPage(), request.getSize(),
+                Sort.by(request.getSortDirection(), request.getSortBy()));
+        Specification<Category> spec = CategorySpecification.searchCategories(request);
+        Page<Category> categories = repository.findAll(spec, pageable);
         List<Category> content = categories.getNumberOfElements() == 0 ? Collections.emptyList() :categories.getContent();
         return new PagedResponse<>(content, categories.getNumber(), categories.getSize(), categories.getTotalElements(),
                 categories.getTotalPages());
     }
 
     @Override
-    public Optional<Category> getCategory(Long categoryId) {
-        return repository.findById(categoryId);
+    public Category getCategory(Long categoryId) {
+        return repository.findById(categoryId).orElseThrow(() ->  new ResourceNotFoundException("Category", "Id", categoryId) );
     }
 
     @Override

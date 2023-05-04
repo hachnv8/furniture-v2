@@ -27,15 +27,15 @@ public class ProductController {
         return new ApiResponse(HttpStatus.OK, "Tạo sản phẩm thành công");
     }
 
-    @GetMapping("/list")
-    public PagedResponse<Product> getListProduct(
-            @RequestParam(required = false) String name,
-            @RequestParam(name = "page", required = false, defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
-            @RequestParam(name = "size", required = false, defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size
-    ) {
-        Pageable paging = PageRequest.of(page, size);
-        return productService.getProducts(name, paging);
-    }
+//    @GetMapping("/list")
+//    public PagedResponse<Product> getListProduct(
+//            @RequestParam(required = false) String name,
+//            @RequestParam(name = "page", required = false, defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
+//            @RequestParam(name = "size", required = false, defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size
+//    ) {
+//        Pageable paging = PageRequest.of(page, size);
+//        return productService.getProducts(name, paging);
+//    }
 
     @GetMapping("/{productId}")
     public ResponseEntity<Product> getProductById(@PathVariable Long productId) {
