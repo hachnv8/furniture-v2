@@ -13,5 +13,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long>, JpaSpecificationExecutor<Category> {
-    Page<Category> searchCategories(CategoryRequest request, Pageable pageable);
+    boolean existsByName(String name);
+   // Page<Category> searchCategories(CategoryRequest request, Pageable pageable);
 }

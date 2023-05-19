@@ -12,5 +12,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
  * Created by HachNV on 24/04/2023
  */
 public interface CustomerRepository extends JpaRepository<Customer, Long>, JpaSpecificationExecutor<Customer> {
-    Page<Customer> searchCustomers(CustomerRequest request, Pageable paging);
+    //Page<Customer> searchCustomers(CustomerRequest request, Pageable paging);
 }

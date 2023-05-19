@@ -31,21 +31,21 @@ public class CustomerController {
         return customerService.getCustomer(customerId);
     }
 
-    @PostMapping("/create")
-    public ApiResponse createCustomer(Customer customer) {
-        customerService.createCustomer(customer);
-        return new ApiResponse(HttpStatus.OK, "Tạo khách hàng thành công");
-    }
-
-    @PutMapping("/update/{customerId}")
-    public ApiResponse updateCustomer(Customer customer, @PathVariable Long customerId) {
-        customerService.updateCustomer(customer, customerId);
-        return new ApiResponse(HttpStatus.OK, "Cập nhật thông tin khách hàng thành công");
-    }
-
-    @DeleteMapping("/delete/{customerId}")
-    public ApiResponse deleteCustomer(@PathVariable Long customerId) {
-        customerService.deleteCustomer(customerId);
-        return new ApiResponse(HttpStatus.OK, "Xóa khách hàng thành công");
-    }
+//    @PostMapping("/create")
+//    public ApiResponse createCustomer(Customer customer) {
+//        customerService.createCustomer(customer);
+//        return new ApiResponse(HttpStatus.OK, "Tạo khách hàng thành công");
+//    }
+//
+//    @PutMapping("/update/{customerId}")
+//    public ApiResponse updateCustomer(Customer customer, @PathVariable Long customerId) {
+//        customerService.updateCustomer(customer, customerId);
+//        return new ApiResponse(HttpStatus.OK, "Cập nhật thông tin khách hàng thành công");
+//    }
+//
+//    @DeleteMapping("/delete/{customerId}")
+//    public ApiResponse deleteCustomer(@PathVariable Long customerId) {
+//        customerService.deleteCustomer(customerId);
+//        return new ApiResponse(HttpStatus.OK, "Xóa khách hàng thành công");
+//    }
 }

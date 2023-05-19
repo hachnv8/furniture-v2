@@ -34,4 +34,16 @@ public class RestControllerExceptionHandler {
 
         return new ResponseEntity<>(apiResponse, status);
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseBody
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ApiResponse> handleIllegalArgumentException(IllegalArgumentException exception) {
+        String message = exception.getMessage();
+
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setMessage(message);
+
+        return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
+    }
 }

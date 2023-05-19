@@ -34,8 +34,8 @@ public class ResourceNotFoundException extends RuntimeException {
         this.fieldValue = fieldValue;
     }
 
-    private void setApiResponse() {
-        String message = String.format("%s not found with %s: '%s'", resourceName, fieldName, fieldValue);
-        apiResponse = new ApiResponse(message);
-    }
+//    private void setApiResponse() {
+//        String message = String.format("%s not found with %s: '%s'", resourceName, fieldName, fieldValue);
+//        apiResponse = new ApiResponse(message);
+//    }
 }

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
 
@@ -18,12 +17,9 @@ import java.io.Serializable;
 })
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiResponse implements Serializable {
+public class ApiResponse<T> implements Serializable {
     private static final Long serialize = 1L;
-    private HttpStatus status;
+    private boolean success;
     private String message;
-
-    public ApiResponse(String message) {
-        this.message = message;
-    }
+    private T data;
 }

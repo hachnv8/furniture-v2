@@ -29,9 +29,9 @@ public class AuthController {
         return new ResponseEntity<>(authResponse, HttpStatus.OK);
     }
 
-    @PostMapping("/signup")
-    private ApiResponse register(@Valid @RequestBody SignupRequest signupRequest) {
-        authService.register(signupRequest);
-        return new ApiResponse(HttpStatus.OK, "Đăng ký tài khoản thành công");
-    }
+//    @PostMapping("/signup")
+//    private ApiResponse register(@Valid @RequestBody SignupRequest signupRequest) {
+//        authService.register(signupRequest);
+//        return new ApiResponse(HttpStatus.OK, "Đăng ký tài khoản thành công");
+//    }
 }

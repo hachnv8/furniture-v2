@@ -38,6 +38,7 @@ public class CustomerServiceImpl implements CustomerService {
         Pageable pageable = PageRequest.of(request.getPage(), request.getSize(),
                 Sort.by(request.getSortDirection(), request.getSortBy()));
         Specification<Customer> spec = CustomerSpecification.searchCustomer(request);
+        System.out.println(customerRepository.findAll(spec, pageable));
         Page<Customer> categories = customerRepository.findAll(spec, pageable);
         List<Customer> content = categories.getNumberOfElements() == 0 ? Collections.emptyList() :categories.getContent();
         return new PagedResponse<>(content, categories.getNumber(), categories.getSize(), categories.getTotalElements(),

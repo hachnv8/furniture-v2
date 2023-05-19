@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/account")
 public class AccountController {
-    @PostMapping("/create")
-    public ApiResponse createAccount(Account account) {
-
-        return new ApiResponse(HttpStatus.OK, "Tạo tài khoản thành công");
-    }
+//    @PostMapping("/create")
+//    public ApiResponse createAccount(Account account) {
+//        return new ApiResponse(HttpStatus.OK, "Tạo tài khoản thành công");
+//    }
 }
