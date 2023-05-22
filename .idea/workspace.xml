@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="358394c0-9f97-4c46-abba-7295414129c8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/application.log" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/application.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/controller/CategoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/controller/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/entity/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/exception/ResourceNotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/exception/RestControllerExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/exception/RestControllerExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/payload/response/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/payload/response/ApiResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/repository/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/repository/CustomerRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/service/impl/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/service/impl/CategoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/service/impl/CustomerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/java/com/hacheery/backend/service/impl/CustomerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +41,8 @@
       <workItem from="1684397569704" duration="337000" />
       <workItem from="1684397936939" duration="595000" />
       <workItem from="1684453769002" duration="1190000" />
+      <workItem from="1684718835770" duration="595000" />
+      <workItem from="1684757616503" duration="599000" />
     </task>
     <servers />
   </component>

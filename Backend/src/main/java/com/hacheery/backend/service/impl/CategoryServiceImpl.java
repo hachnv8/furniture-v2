@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 /**
@@ -46,9 +45,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategory(Long categoryId) {
-//        return categoryRepository.findById(categoryId).orElseThrow(() -> new ResourceNotFoundException(
-//                String.format("Không tìm thấy danh mục với ID: '%d'", categoryId)
-//        ));
+        return categoryRepository.findById(categoryId).orElseThrow(
+                () -> new ResourceNotFoundException("Category", "Id", categoryId)
+        );
     }
 
     @Override
@@ -70,6 +69,9 @@ public class CategoryServiceImpl implements CategoryService {
 
         Category existingCategory = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new IllegalArgumentException("Không tìm thấy danh mục với ID: " + categoryId));
+        if (categoryId.equals(category.getParentId())) {
+            throw new IllegalArgumentException("Danh mục cha không thể trùng với danh mục con");
+        }
         existingCategory.setName(category.getName());
         existingCategory.setParentId(category.getParentId());
 

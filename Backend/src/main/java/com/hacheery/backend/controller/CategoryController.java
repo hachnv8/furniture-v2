@@ -46,19 +46,28 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-//    @PutMapping("/update/{categoryId}")
-//    public ApiResponse updateCategory(Category category, @PathVariable Long categoryId) {
-//        // cần check xem ở đây nếu lấy trực tiếp id từ category có được không, hay cần phải lấy @PathVariable Long categoryId
-//        // đối với rest api, để thuận tiện cho người dùng thì khi click vào 1 sản phẩm ta có link như sau:
-//        // http://localhost:8080/book/9783827319333
-//        // lúc này nên sử dụng @PathVariable để hứng id
-//        categoryService.updateCategory(category, categoryId);
-//        return new ApiResponse(HttpStatus.OK, "Cập nhật category thành công");
-//    }
-//
-//    @PostMapping("/delete/{categoryId}")
-//    public ApiResponse deleteCategory(@PathVariable Long categoryId) {
-//        categoryService.deleteCategory(categoryId);
-//        return new ApiResponse(HttpStatus.OK, "Xóa category thành công");
-//    }
+    @PutMapping("/update/{categoryId}")
+    public ResponseEntity<ApiResponse<Category>> updateCategory(Category category, @PathVariable Long categoryId) {
+        // cần check xem ở đây nếu lấy trực tiếp id từ category có được không, hay cần phải lấy @PathVariable Long categoryId
+        // đối với rest api, để thuận tiện cho người dùng thì khi click vào 1 sản phẩm ta có link như sau:
+        // http://localhost:8080/book/9783827319333
+        // lúc này nên sử dụng @PathVariable để hứng id
+        ApiResponse<Category> response = new ApiResponse<>();
+        Category updatedCategory = categoryService.updateCategory(category, categoryId);
+        logger.info("Cập nhật thành công category với ID: " + categoryId);
+        response.setSuccess(true);
+        response.setMessage("Cập nhật category thành công!");
+        response.setData(updatedCategory);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @DeleteMapping("/delete/{categoryId}")
+    public ResponseEntity<ApiResponse<String>> deleteCategory(@PathVariable Long categoryId) {
+        categoryService.deleteCategory(categoryId);
+        logger.info("Xóa thành công category với ID: " + categoryId);
+        ApiResponse<String> response = new ApiResponse<>();
+        response.setSuccess(true);
+        response.setMessage("Xóa danh mục thành công");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }
