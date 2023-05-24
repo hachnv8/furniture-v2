@@ -35,7 +35,7 @@ public class CategoryController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ApiResponse<Category>> createCategory(Category category) {
+    public ResponseEntity<ApiResponse<Category>> createCategory(@RequestBody Category category) {
         ApiResponse<Category> response = new ApiResponse<>();
         Category savedCategory = categoryService.createCategory(category);
         // Log the successful creation
@@ -68,6 +68,6 @@ public class CategoryController {
         ApiResponse<String> response = new ApiResponse<>();
         response.setSuccess(true);
         response.setMessage("Xóa danh mục thành công");
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(response);
     }
 }
